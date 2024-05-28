@@ -1,10 +1,47 @@
 :root {
-  /* Base font size */
-  font-size: 10px;
+  --bg-color: #112;
+  --text-color: #fff;
 
   /* Set neon color */
   --neon-text-color: #f40;
   --neon-border-color: #08f;
+
+  /* Base font size */
+  --font-size: 13rem;
+  --font-size-small: 3rem;
+
+  /* Shadow sizes */
+  --ts: 10rem;
+  --ts-small: 1.5rem;
+
+  /* Derived sizes */
+  --text-shadow-small: calc(var(--ts-small) * -0.02)
+      calc(var(--ts-small) * -0.02) calc(var(--ts-small) * 0.1)
+      var(--text-color),
+    calc(var(--ts-small) * 0.02) calc(var(--ts-small) * 0.02)
+      calc(var(--ts-small) * 0.1) var(--text-color),
+    0 0 calc(var(--ts-small) * 0.2) var(--neon-text-color),
+    0 0 calc(var(--ts-small) * 0.4) var(--neon-text-color),
+    0 0 calc(var(--ts-small) * 0.6) var(--neon-text-color),
+    0 0 calc(var(--ts-small) * 0.8) var(--neon-text-color),
+    0 0 calc(var(--ts-small) * 1) var(--neon-text-color);
+
+  --text-shadow-large: calc(var(--ts) * -0.02) calc(var(--ts) * -0.02)
+      calc(var(--ts) * 0.1) var(--text-color),
+    calc(var(--ts) * 0.02) calc(var(--ts) * 0.02) calc(var(--ts) * 0.1)
+      var(--text-color),
+    0 0 calc(var(--ts) * 0.2) var(--neon-text-color),
+    0 0 calc(var(--ts) * 0.4) var(--neon-text-color),
+    0 0 calc(var(--ts) * 0.6) var(--neon-text-color),
+    0 0 calc(var(--ts) * 0.8) var(--neon-text-color),
+    0 0 calc(var(--ts) * 1) var(--neon-text-color);
+
+  --box-shadow-large: 0 0 calc(var(--ts) * 0.05) var(--text-color),
+    inset 0 0 calc(var(--ts) * 0.05) var(--text-color),
+    0 0 calc(var(--ts) * 0.2) var(--neon-border-color),
+    inset 0 0 calc(var(--ts) * 0.2) var(--neon-border-color),
+    0 0 calc(var(--ts) * 0.4) var(--neon-border-color),
+    inset 0 0 calc(var(--ts) * 0.4) var(--neon-border-color);
 }
 
 body {
@@ -12,11 +49,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000;
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: #112 url(./image.png) center no-repeat;
+  background: var(--bg-color) url(./image.png) center no-repeat;
   background-size: cover;
 }
 
@@ -26,30 +62,43 @@ main {
 }
 
 h1 {
-  font-size: 13rem;
+  font-size: var(--font-size);
   font-weight: 200;
   font-style: italic;
-  color: #fff;
-  padding: 4rem 6rem 5.5rem;
-  border: 0.4rem solid #fff;
-  border-radius: 2rem;
+  color: var(--text-color);
+  padding: calc(var(--font-size) * 0.4) calc(var(--font-size) * 0.5)
+    calc(var(--font-size) * 0.5) calc(var(--font-size) * 0.4);
+  border: 0.4rem solid var(--text-color);
+  border-radius: calc(var(--font-size) * 0.15);
   text-transform: uppercase;
-  animation: flicker 1.5s infinite alternate;
+  animation: flicker 5s infinite alternate;
   margin: 0;
 }
+
+h1.strike {
+  text-decoration: line-through;
+}
+
 h1.timer {
-  font-size: 3rem;
-  padding: 0.5rem;
+  font-weight: 100;
+  font-size: var(--font-size-small);
+  padding: calc(var(--font-size-small) * 0.5);
   border: none;
-  border-radius: 2rem;
   animation: flickerTimer 1s infinite alternate;
   margin: 0;
   text-align: center;
   display: inline-block;
   box-shadow: none;
-  bottom: 0rem;
+  bottom: calc(var(--font-size-small) * 0.2);
   position: absolute;
-  right: 1rem;
+  right: calc(var(--font-size-small) * 0.5);
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 h1::-moz-selection {
@@ -76,14 +125,8 @@ h1:focus {
   54%,
   56%,
   100% {
-    text-shadow: -0.2rem -0.2rem 1rem #fff, 0.2rem 0.2rem 1rem #fff,
-      0 0 2rem var(--neon-text-color), 0 0 4rem var(--neon-text-color),
-      0 0 6rem var(--neon-text-color), 0 0 8rem var(--neon-text-color),
-      0 0 10rem var(--neon-text-color);
-
-    box-shadow: 0 0 0.5rem #fff, inset 0 0 0.5rem #fff,
-      0 0 2rem var(--neon-border-color), inset 0 0 2rem var(--neon-border-color),
-      0 0 4rem var(--neon-border-color), inset 0 0 4rem var(--neon-border-color);
+    text-shadow: var(--text-shadow-large);
+    box-shadow: var(--box-shadow-large);
   }
 
   20%,
@@ -93,6 +136,7 @@ h1:focus {
     box-shadow: none;
   }
 }
+
 @keyframes flickerTimer {
   0%,
   19%,
@@ -102,16 +146,53 @@ h1:focus {
   54%,
   56%,
   100% {
-    text-shadow: -0.02rem -0.02rem 0.1rem #fff, 0.02rem 0.02rem 0.1rem #fff,
-      0 0 0.2rem var(--neon-text-color), 0 0 0.4rem var(--neon-text-color),
-      0 0 0.6rem var(--neon-text-color), 0 0 0.8rem var(--neon-text-color),
-      0 0 1rem var(--neon-text-color);
+    text-shadow: var(--text-shadow-small);
   }
 
   20%,
   24%,
   55% {
     text-shadow: none;
-    box-shadow: none;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 980px) {
+  :root {
+    --font-size: 8rem;
+    --font-size-small: 2rem;
+
+    --ts: 5rem;
+    --ts-small: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size: 6rem;
+    --font-size-small: 1.5rem;
+
+    --ts: 3rem;
+    --ts-small: 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size: 5rem;
+    --font-size-small: 1rem;
+
+    --ts: 2rem;
+    --ts-small: 0.3rem;
+  }
+}
+
+@media (max-width: 320px) {
+  :root {
+    --font-size: 3rem;
+    --font-size-small: 0.7rem;
+
+    --ts: 1rem;
+    --ts-small: 0.2rem;
   }
 }

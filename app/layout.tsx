@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Exo_2 } from "next/font/google";
 import "./globals.css";
 
-const inter = Exo_2({ subsets: ["latin"] });
+const inter = Exo_2({ subsets: ["latin"], weight: ["100", "200"] });
 
 export const metadata: Metadata = {
   title: "Totp Generator",
