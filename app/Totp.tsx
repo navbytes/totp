@@ -34,7 +34,14 @@ export default function Totp() {
 
   return (
     <main>
-      <h1 spellCheck="false">{totp.otp || "Secret?"}</h1>
+      <h1
+        spellCheck="false"
+        onClick={() => {
+          navigator.clipboard.writeText(totp.otp);
+        }}
+      >
+        {totp.otp || "Secret?"}
+      </h1>
       <CountdownTimer targetEpoch={totp.expires} />
     </main>
   );

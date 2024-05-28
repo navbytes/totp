@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-
 interface CountdownTimerProps {
   targetEpoch: number;
 }
@@ -23,15 +22,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetEpoch }) => {
     };
   }, [targetEpoch]);
 
-  return (
-    <div>
-      {secondsLeft > 1 ? (
-        <h2>Seconds Left: {secondsLeft}</h2>
-      ) : (
-        <h2>Expired!</h2>
-      )}
-    </div>
-  );
+  return <h1 className="timer">{secondsLeft}</h1>;
 };
 
 export default CountdownTimer;

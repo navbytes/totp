@@ -14,6 +14,15 @@ body {
   align-items: center;
   background: #000;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #112 url(./image.png) center no-repeat;
+  background-size: cover;
+}
+
+main {
+  text-align: center;
+  position: relative;
 }
 
 h1 {
@@ -28,15 +37,19 @@ h1 {
   animation: flicker 1.5s infinite alternate;
   margin: 0;
 }
-h2 {
-  font-size: 1rem;
-  font-weight: 200;
-  font-style: italic;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
+h1.timer {
+  font-size: 3rem;
+  padding: 0.5rem;
+  border: none;
   border-radius: 2rem;
+  animation: flickerTimer 1s infinite alternate;
   margin: 0;
+  text-align: center;
+  display: inline-block;
+  box-shadow: none;
+  bottom: 0rem;
+  position: absolute;
+  right: 1rem;
 }
 
 h1::-moz-selection {
@@ -71,6 +84,28 @@ h1:focus {
     box-shadow: 0 0 0.5rem #fff, inset 0 0 0.5rem #fff,
       0 0 2rem var(--neon-border-color), inset 0 0 2rem var(--neon-border-color),
       0 0 4rem var(--neon-border-color), inset 0 0 4rem var(--neon-border-color);
+  }
+
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+    box-shadow: none;
+  }
+}
+@keyframes flickerTimer {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    text-shadow: -0.02rem -0.02rem 0.1rem #fff, 0.02rem 0.02rem 0.1rem #fff,
+      0 0 0.2rem var(--neon-text-color), 0 0 0.4rem var(--neon-text-color),
+      0 0 0.6rem var(--neon-text-color), 0 0 0.8rem var(--neon-text-color),
+      0 0 1rem var(--neon-text-color);
   }
 
   20%,
